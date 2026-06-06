@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import slugify from "slugify";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/portfolio-cms";
+const MONGODB_URI = process.env.MONGODB_URI;
 const ADMIN_NAME = process.env.ADMIN_NAME || "Admin User";
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@example.com";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "ChangeMe123!";
