@@ -19,6 +19,10 @@ const defaultPortfolioConfig: PortfolioConfigData = {
   skills: siteConfig.skills,
 };
 
+function hasMongoUri(): boolean {
+  return Boolean(process.env.MONGODB_URI);
+}
+
 function normalizeHomepage(
   homepage?: Partial<PortfolioConfigData["homepage"]> | null,
 ): PortfolioConfigData["homepage"] {
@@ -63,10 +67,18 @@ export function normalizePortfolioConfig(
 }
 
 export async function getPortfolioConfig(): Promise<PortfolioConfigData> {
-  await connectDB();
+  if (!hasMongoUri()) {
+    return normalizePortfolioConfig(defaultPortfolioConfig);
+  }
 
-  const config = await PortfolioConfig.findOne().lean();
-  return normalizePortfolioConfig(config ?? defaultPortfolioConfig);
+  try {
+    await connectDB();
+    const config = await PortfolioConfig.findOne().lean();
+    return normalizePortfolioConfig(config ?? defaultPortfolioConfig);
+  } catch (error) {
+    console.warn("getPortfolioConfig: unable to connect to MongoDB, falling back to defaults", error);
+    return normalizePortfolioConfig(defaultPortfolioConfig);
+  }
 }
 
 export async function updatePortfolioConfig(
