@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Suspense } from "react";
 import { generateSEO } from "@/lib/seo";
 import { getProjects, getCategories, getTechnologies } from "@/services/project.service";

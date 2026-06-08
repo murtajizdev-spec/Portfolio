@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { generateSEO } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";

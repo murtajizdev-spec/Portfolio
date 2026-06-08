@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Hero } from "@/components/portfolio/hero";
 import { RoleHighlights } from "@/components/portfolio/role-highlights";
 import { SkillsOverview } from "@/components/portfolio/skills-overview";
