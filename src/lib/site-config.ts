@@ -107,7 +107,10 @@ export const siteConfig = {
 };
 
 export function getBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_APP_URL) return process.env.NEXT_PUBLIC_APP_URL;
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
+  const envUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.VERCEL_URL || "http://localhost:3000";
+  // Ensure the URL includes a protocol. If VERCEL_URL is provided it may be just the host.
+  if (!envUrl.startsWith("http://") && !envUrl.startsWith("https://")) {
+    return `https://${envUrl}`;
+  }
+  return envUrl;
 }
