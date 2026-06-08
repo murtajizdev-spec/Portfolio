@@ -5,6 +5,15 @@ export const runtime = "nodejs";
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
+
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api/auth") ||
+    pathname === "/favicon.ico"
+  ) {
+    return NextResponse.next();
+  }
+
   const isAdminRoute = pathname.startsWith("/admin");
   const isLoginRoute = pathname === "/login";
 

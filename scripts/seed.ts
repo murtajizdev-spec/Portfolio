@@ -4,13 +4,16 @@
  *
  * Requires MONGODB_URI and ADMIN_* env vars in .env.local
  */
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import slugify from "slugify";
 
+dotenv.config({ path: ".env.local" });
+
 const MONGODB_URI = process.env.MONGODB_URI;
 const ADMIN_NAME = process.env.ADMIN_NAME || "Admin User";
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@example.com";
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL?.toLowerCase() || "admin@example.com";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "ChangeMe123!";
 
 if (!MONGODB_URI) {
