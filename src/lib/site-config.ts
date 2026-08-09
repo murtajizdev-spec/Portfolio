@@ -6,7 +6,7 @@ export const siteConfig = {
   author: {
     name: "Murtajiz Hassan",
     title: "Data Scientist & Web Developer",
-    email: "hello@example.com",
+    email: "murtajizdev.com",
     location: "San Francisco, CA",
     avatar: "/avatar.jpg",
     bio: "I combine data science and web development to build fast, useful, and visually engaging digital products.",
